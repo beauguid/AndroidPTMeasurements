@@ -1,0 +1,13 @@
+
+public class Tester {
+
+	public static void main(String[] args) {
+		MaleMeasurement meas = new MaleMeasurement(160, 69, 30, 17, "Too fat!", "Today");
+		
+		int i = 0;
+		int j = 9;
+		System.out.println("This" + i + j);
+
+	}
+
+}

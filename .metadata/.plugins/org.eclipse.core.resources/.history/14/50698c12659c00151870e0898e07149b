@@ -1,0 +1,66 @@
+
+public class MaleMeasurement extends PTMeasurement {
+	MaleMeasurement(){
+		
+	}
+	
+	MaleMeasurement(float weight, float height, float waist, float neck, String comments, String date) {
+		this.setWeight(weight);
+		this.setHeight(height);
+		this.setWaist(waist);
+		this.setNeck(neck);
+		this.setComments(comments);
+		this.setDate(date);
+		//sets the bodyFat immediately
+		if (isValid){
+			this.setBodyfat(maleBodyFatPercentage(this.getWeight(),this.getHeight(),this.getWaist(), this.getNeck()));
+		}
+		else {
+			feedback += "Error calculating body fat %!\n";
+		}
+	}
+	
+	@SuppressWarnings("finally")
+	public float maleBodyFatPercentage(float weight, float height, float waist, float neck)
+    {
+        float totalBodyFat = -1;
+		try {
+		float wn = waist - neck;
+        float log1 = (float) Math.log10(wn);
+        float log2 = (float) Math.log10(height);
+        totalBodyFat = (float)(86.010 * log1 - 70.041 * log2 + 36.76);
+        Math.round(totalBodyFat);
+        }
+        catch (Exception e){
+        	feedback += e.toString() + "\n";
+        }
+        finally {
+        	return totalBodyFat;
+        }
+    }
+	
+	void setAssessment() {
+		String assessment = "No assessment";
+		if (this.getBodyfat() < 5)
+        {
+            assessment = "Essential Fat";
+        }
+        else if (this.getBodyfat() > 5 && this.getBodyfat() < 14)
+        {
+        	assessment = "Essential Fat";
+        }
+        else if (this.getBodyfat() > 14 && this.getBodyfat() < 17)
+        {
+        	assessment = "Essential Fat";
+        }
+        else if (this.getBodyfat() > 17 && this.getBodyfat() < 24)
+        {
+        	assessment = "Essential Fat";
+        }
+        else
+        {
+        	assessment = "Essential Fat";
+        }
+		this.assessment = assessment;
+	}
+}

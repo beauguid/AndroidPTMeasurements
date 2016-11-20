@@ -1,0 +1,21 @@
+
+public class MaleMeasurements extends PTMeasurements {
+	MaleMeasurements(){
+		
+	}
+	
+	MaleMeasurements(float weight, float height, float waist, float neck, String comments) {
+		
+		
+	}
+	
+	public float maleBodyFatPercentage(float weight, float height, float waist, float neck)
+    {
+        float wn = waist - neck;
+        float log1 = (float) Math.log10(wn);
+        float log2 = (float) Math.log10(height);
+        float totalBodyFat = (float)(86.010 * log1 - 70.041 * log2 + 36.76);
+        Math.round(totalBodyFat);
+        return totalBodyFat;
+    }
+}
